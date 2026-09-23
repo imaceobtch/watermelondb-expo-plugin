@@ -3,6 +3,11 @@ name: Publish to npm
 # Publishes on every push to main, but only when package.json's version
 # isn't already on the registry — so pushes that don't bump the version
 # are no-ops instead of failing on a duplicate-publish error.
+#
+# Uses npm Trusted Publishing (OIDC) — no NPM_TOKEN secret. This only
+# works once the package exists on npm and a Trusted Publisher is
+# configured for it at https://www.npmjs.com/package/<name>/access
+# pointing at this repo + this workflow filename.
 on:
   push:
     branches:
@@ -17,13 +22,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org
+
+      - name: Update npm CLI (trusted publishing needs npm >= 11.5.1)
+        run: npm install -g npm@latest
 
       - name: Check whether this version is already published
         id: version-check
@@ -48,5 +57,3 @@ jobs:
       - name: Publish
         if: steps.version-check.outputs.published == 'false'
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
