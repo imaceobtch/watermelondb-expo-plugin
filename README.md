@@ -1,12 +1,19 @@
 # watermelon-db-plugin 🍉
 Config plugin to auto configure `@nozbe/watermelondb`
 
+> **This is a fork of [`@morrowdigital/watermelondb-expo-plugin`](https://github.com/morrowdigital/watermelondb-expo-plugin).**
+> Upstream's `main` branch (2.4.0) already removes the `JSIModulePackage` registration that
+> React Native's New-Architecture-only builds no longer expose, but that fix has never been cut
+> as a stable npm release (npm's `latest` tag is still stuck on 2.3.3, which fails to compile
+> against current RN). This fork exists solely to publish that already-written fix as a real,
+> stable release. No behavior changes beyond what upstream's own `main` already contains.
+
 ## Install
 
-> Tested against Expo SDK 54
+> Tested against Expo SDK 54–57, RN 0.86.x (New Architecture)
 
 ```
-yarn add @morrowdigital/watermelondb-expo-plugin
+npm install @imaceobtch/watermelondb-expo-plugin
 
 ```
 
@@ -19,7 +26,7 @@ In your app.json `plugins` array:
 ```json
 {
   "plugins": [
-        "@morrowdigital/watermelondb-expo-plugin"
+        "@imaceobtch/watermelondb-expo-plugin"
   ]
 }
 ```
@@ -30,7 +37,7 @@ This plugin installs automatically JSI support for Android builds, as per [Water
 If you wish to disable JSI support during build you may add the option in config plugin:
 ```json
   [
-    "@morrowdigital/watermelondb-expo-plugin",
+    "@imaceobtch/watermelondb-expo-plugin",
     { "disableJsi": true }
   ]
 ```
@@ -54,7 +61,7 @@ This plugin will NOT add the `arm64` in  `Exlcuded_Archs`, in SDK 50+ builds:
 If you wish to add the above in configuration, you can add it with option:
 ```json
   [
-    "@morrowdigital/watermelondb-expo-plugin",
+    "@imaceobtch/watermelondb-expo-plugin",
     { "excludeSimArch": true }
   ]
 ```

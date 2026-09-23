@@ -1,13 +1,16 @@
 {
-  "name": "@morrowdigital/watermelondb-expo-plugin",
+  "name": "@imaceobtch/watermelondb-expo-plugin",
   "version": "2.4.0",
   "main": "build/withWatermelon.js",
   "types": "build/withWatermelon.d.ts",
   "license": "MIT",
-  "git": "https://github.com/morrowdigital/watermelondb-expo-plugin.git",
-  "homepage": "https://github.com/morrowdigital/watermelondb-expo-plugin#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "git": "https://github.com/imaceobtch/watermelondb-expo-plugin.git",
+  "homepage": "https://github.com/imaceobtch/watermelondb-expo-plugin#readme",
   "bugs": {
-    "url": "https://github.com/morrowdigital/watermelondb-expo-plugin/issues"
+    "url": "https://github.com/imaceobtch/watermelondb-expo-plugin/issues"
   },
   "keywords": [
     "watermelondb",
@@ -33,13 +36,16 @@
     "bump:beta": "npm version prerelease --preid=beta",
     "bump:release": "npm version patch"
   },
-  "description": "Config plugin to auto configure `@nozbe/watermelondb`",
+  "description": "Config plugin to auto configure `@nozbe/watermelondb` (fork with the New Architecture / JSIModulePackage removal fix, published as a stable release)",
   "directories": {
     "example": "example"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/morrowdigital/watermelondb-expo-plugin.git"
+    "url": "git+https://github.com/imaceobtch/watermelondb-expo-plugin.git"
   },
-  "author": "Morrow"
+  "author": "Morrow",
+  "contributors": [
+    "imaceobtch"
+  ]
 }

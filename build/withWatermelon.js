@@ -62,36 +62,6 @@ function proGuardRules(config) {
             return config;
         }]);
 }
-// const withCocoaPods = (config: ExpoConfig): ExpoConfig => {
-//   return withDangerousMod(config, [
-//     "ios",
-//     async (config) => {
-//       const filePath = path.join(
-//         config.modRequest.platformProjectRoot,
-//         "Podfile"
-//       );
-//
-//       const contents = await fs.readFile(filePath, "utf-8");
-//
-//       const watermelonPath = isWatermelonDBInstalled(
-//         config.modRequest.projectRoot
-//       );
-//
-//       if (watermelonPath) {
-//         if (!contents.includes("pod 'simdjson'")) {
-//           const patchKey = "post_install";
-//           const slicedContent = contents.split(patchKey);
-//           slicedContent[0] += `\n
-//   pod 'simdjson', path: File.join(File.dirname(\`node --print "require.resolve('@nozbe/simdjson/package.json')"\`)), :modular_headers => true \n\n  `;
-//           await fs.writeFile(filePath, slicedContent.join(patchKey));
-//         }
-//       } else {
-//         throw new Error("Please make sure you have watermelondb installed");
-//       }
-//       return config;
-//     },
-//   ]) as ExpoConfig;
-// };
 /**
  * Exclude building for arm64 on simulator devices in the pbxproj project.
  * Without this, production builds targeting simulators will fail.
@@ -117,25 +87,6 @@ const withExcludedSimulatorArchitectures = (c) => {
         return config;
     });
 };
-// function isWatermelonDBInstalled(projectRoot: string) {
-//   const resolved = resolveFrom.silent(
-//     projectRoot,
-//     "@nozbe/watermelondb/package.json"
-//   );
-//   return resolved ? path.dirname(resolved) : null;
-// }
-// function getPlatformProjectFilePath(
-//   config: ExportedConfigWithProps,
-//   fileName: string
-// ) {
-//   const projectName =
-//     config.modRequest.projectName || config.name.replace(/[- ]/g, "");
-//   return path.join(
-//     config.modRequest.platformProjectRoot,
-//     projectName,
-//     fileName
-//   );
-// }
 // @ts-ignore
 function withSDK50(options) {
     return (config) => {
